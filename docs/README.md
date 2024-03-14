@@ -1,9 +1,14 @@
 # TIL 뉴스피드 프로젝트
 
-![](https://img.shields.io/badge/내일배움캠프-Spring팀과제-white.svg)
+![](https://img.shields.io/badge/내일배움캠프-Spring개인과제-white.svg)
 
 ---
-+ TIL을 작성하고 관리하는 뉴스피드 프로젝트입니다.
++ 스프링 심화 코드 개선 과제입니다.
++ TIL을 작성하고 관리하는 뉴스피드 프로젝트를 개선했습니다.
++ Controller, Service 패키지 내 클래스 개선
++ CustomException 정의 및 SpringAOP 적용
++ QueryDSL 을 사용하여 검색 기능 만들기
++ Pageable 을 사용하여 페이징 및 정렬 기능 만들기
 ---  
 
 # Development
@@ -20,4 +25,3 @@
 ![til](https://github.com/PotatoTilNewsfeed/PotatoTilNewsfeed/assets/109019081/fd6f8e0d-0928-47d0-8dad-8ef356398dd9)
 
 # API
-![API](https://github.com/sonjh919/todo/assets/109019081/3ee1f61e-19f5-4b8d-8e38-21295e73b69b)
