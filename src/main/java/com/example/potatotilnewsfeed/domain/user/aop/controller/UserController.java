@@ -117,7 +117,6 @@ public class UserController {
 
     @GetMapping("v2/users")
     public ResponseEntity<List<UserListResponseDto>> getUserWithEmail(@RequestParam("email") String email) {
-
         return ResponseEntity.ok(userServiceImpl.getUsersWithEmail(email));
     }
 }

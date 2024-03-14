@@ -29,11 +29,10 @@ public class UserRepositoryImpl extends QuerydslRepositorySupport implements Use
     }
 
     @Override
-    public List<User> search(String nickname, String email) {
+    public List<User> findByEmailEndPoint(String email) {
         return queryFactory
             .selectFrom(user)
             .where(
-                equalNickname(nickname),
                 endWithEmail(email))
             .fetch();
     }
@@ -49,7 +48,6 @@ public class UserRepositoryImpl extends QuerydslRepositorySupport implements Use
         if (email == null || email.isEmpty()) {
             return null;
         }
-        return user.email.endsWithIgnoreCase(email);
+        return user.email.endsWith(email);
     }
-
 }

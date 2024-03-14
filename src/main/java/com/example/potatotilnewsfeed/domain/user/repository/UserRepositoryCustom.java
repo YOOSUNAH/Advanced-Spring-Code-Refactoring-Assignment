@@ -6,6 +6,5 @@ import java.util.Optional;
 
 public interface UserRepositoryCustom {
     Optional<User> findByNickname(String nickname);
-
-    List<User> search(String nickname, String email);
+    List<User> findByEmailEndPoint(String email);
 }
