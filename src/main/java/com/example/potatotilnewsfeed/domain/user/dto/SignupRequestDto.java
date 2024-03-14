@@ -3,11 +3,13 @@ package com.example.potatotilnewsfeed.domain.user.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 public class SignupRequestDto {
 
     @NotBlank(message = "아이디는 필수로 입력해야 합니다.")
