@@ -1,4 +1,4 @@
-# TIL 뉴스피드 프로젝트
+# 스프링 심화 코드 개선 과제
 
 ![](https://img.shields.io/badge/내일배움캠프-Spring개인과제-white.svg)
 
