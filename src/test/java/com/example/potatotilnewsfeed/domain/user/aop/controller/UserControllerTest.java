@@ -7,6 +7,7 @@ import static org.mockito.BDDMockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.potatotilnewsfeed.domain.user.service.UserServiceImpl;
@@ -69,5 +70,17 @@ class UserControllerTest implements UserCommonTest {
         // then
         action.andExpect(status().isOk());
         verify(userServiceImpl, times(1)).signup(any());
+    }
+
+    @DisplayName("로그아웃 요청")
+    @Test
+    void logout() throws Exception {
+        // when
+        var action = mockMvc.perform(patch("/v1/users/logout")
+            .contentType(MediaType.APPLICATION_JSON)
+                .header("Authorization", TOKEN));
+
+        // then
+        action.andExpect(status().isOk());
     }
 }
