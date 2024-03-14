@@ -2,12 +2,14 @@ package com.example.potatotilnewsfeed.domain.user.aop.controller;
 
 import com.example.potatotilnewsfeed.domain.user.aop.annotation.Timer;
 import com.example.potatotilnewsfeed.domain.user.dto.SignupRequestDto;
+import com.example.potatotilnewsfeed.domain.user.dto.UserListResponseDto;
 import com.example.potatotilnewsfeed.domain.user.dto.UserRequestDto;
 import com.example.potatotilnewsfeed.domain.user.dto.UserResponseDto;
 import com.example.potatotilnewsfeed.domain.user.service.UserServiceImpl;
 import com.example.potatotilnewsfeed.global.dto.ResponseDto;
 import com.example.potatotilnewsfeed.global.security.UserDetailsImpl;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +21,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @Slf4j
 @RestController
@@ -47,7 +51,7 @@ public class UserController {
 
     @PatchMapping("/v1/users/logout")
     public ResponseEntity<ResponseDto<Void>> logout(
-        @RequestHeader(value = "Authorization") String accessToken){
+        @RequestHeader(value = "Authorization") String accessToken) {
         log.info(LOG_OUT_API);
 
         userServiceImpl.logout(accessToken);
@@ -58,30 +62,29 @@ public class UserController {
                 .build());
     }
 
-
-
+    @Timer
     @GetMapping("/v1/users")
     public ResponseEntity<ResponseDto<UserResponseDto>> getUser(
         @AuthenticationPrincipal UserDetailsImpl userDetails) {
-            UserResponseDto userResponseDto = userServiceImpl.getUser(userDetails);
-            return ResponseEntity.ok()
-                .body(ResponseDto.<UserResponseDto>builder()
-                    .message("프로필 조회 성공")
-                    .data(userResponseDto)
-                    .build());
+        UserResponseDto userResponseDto = userServiceImpl.getUser(userDetails);
+        return ResponseEntity.ok()
+            .body(ResponseDto.<UserResponseDto>builder()
+                .message("프로필 조회 성공")
+                .data(userResponseDto)
+                .build());
     }
 
     @PutMapping("/v1/users")
     public ResponseEntity<ResponseDto<UserResponseDto>> updateUser(
         @AuthenticationPrincipal UserDetailsImpl userDetails,
         @RequestBody UserRequestDto userRequestDto) {
-            UserResponseDto userResponseDto = userServiceImpl.updateUser(userDetails,
-                userRequestDto);
-            return ResponseEntity.ok()
-                .body(ResponseDto.<UserResponseDto>builder()
-                    .message("프로필 수정 성공")
-                    .data(userResponseDto)
-                    .build());
+        UserResponseDto userResponseDto = userServiceImpl.updateUser(userDetails,
+            userRequestDto);
+        return ResponseEntity.ok()
+            .body(ResponseDto.<UserResponseDto>builder()
+                .message("프로필 수정 성공")
+                .data(userResponseDto)
+                .build());
     }
 
     @PutMapping("/v1/users/password")
@@ -89,18 +92,19 @@ public class UserController {
         @AuthenticationPrincipal UserDetailsImpl userDetails,
         @RequestBody UserRequestDto userRequestDto) {
 
-            UserResponseDto userResponseDto = userServiceImpl.updatePassword(userDetails,
-                userRequestDto);
-            return ResponseEntity.ok()
-                .body(ResponseDto.<UserResponseDto>builder()
-                    .message("프로필 비밀번호 수정 성공")
-                    .data(userResponseDto)
-                    .build());
+        UserResponseDto userResponseDto = userServiceImpl.updatePassword(userDetails,
+            userRequestDto);
+        return ResponseEntity.ok()
+            .body(ResponseDto.<UserResponseDto>builder()
+                .message("프로필 비밀번호 수정 성공")
+                .data(userResponseDto)
+                .build());
     }
 
-    @Timer
+
     @DeleteMapping("/v1/users")
-    public void deleteUser(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody UserRequestDto userRequestDto) {
+    public void deleteUser(@AuthenticationPrincipal UserDetailsImpl userDetails,
+        @RequestBody UserRequestDto userRequestDto) {
 
         userServiceImpl.deleteUser(userDetails, userRequestDto);
         // 삭제 서비스 로직 : 소요시간 2초로 설정
@@ -111,5 +115,10 @@ public class UserController {
         }
     }
 
+    @GetMapping("v2/users")
+    public ResponseEntity<List<UserListResponseDto>> getUserWithEmail(@RequestParam("email") String email) {
+
+        return ResponseEntity.ok(userServiceImpl.getUsersWithEmail(email));
+    }
 }
 
