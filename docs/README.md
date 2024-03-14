@@ -13,7 +13,6 @@
 
 # Development
 ## Prerequisites
-+ JDK amazoncorretto 17.0.5
 + Spring Boot 3.2.2
 + Gradle 8.5
 + MySQL 8.0.35
@@ -25,3 +24,9 @@
 ![til](https://github.com/PotatoTilNewsfeed/PotatoTilNewsfeed/assets/109019081/fd6f8e0d-0928-47d0-8dad-8ef356398dd9)
 
 # API
+포스트맨 https://documenter.getpostman.com/view/28175588/2sA2r545jB
+
+<img width="722" alt="스크린샷 2024-03-14 오후 3 48 42" src="https://github.com/YOOSUNAH/Advanced-Spring-Code-Refactoring-Assignment/assets/120374640/563ab2ff-b389-4878-9cd3-e500a537c5e9">
+<img width="704" alt="스크린샷 2024-03-14 오후 3 49 05" src="https://github.com/YOOSUNAH/Advanced-Spring-Code-Refactoring-Assignment/assets/120374640/8931dc1e-5be7-4ff1-b638-f3d08d032af5">
+<img width="704" alt="스크린샷 2024-03-14 오후 3 49 11" src="https://github.com/YOOSUNAH/Advanced-Spring-Code-Refactoring-Assignment/assets/120374640/d36876ff-7456-4dea-bb1e-20c903af443a">
+<img width="716" alt="스크린샷 2024-03-14 오후 3 48 56" src="https://github.com/YOOSUNAH/Advanced-Spring-Code-Refactoring-Assignment/assets/120374640/e4d7d511-b03d-4bab-affd-5669a5d64452">
