@@ -1,6 +1,8 @@
 package com.example.potatotilnewsfeed.test;
 
 import com.example.potatotilnewsfeed.domain.user.dto.SignupRequestDto;
+import com.example.potatotilnewsfeed.domain.user.dto.UserRequestDto;
+import com.example.potatotilnewsfeed.domain.user.dto.UserResponseDto;
 import com.example.potatotilnewsfeed.domain.user.entity.User;
 import com.example.potatotilnewsfeed.domain.user.entity.UserRoleEnum;
 
@@ -16,6 +18,7 @@ public interface UserCommonTest {
     String TEST_CHECK_PASSWORD = "newPassword12!@";
     String TEST_USER_EMAIL = "sonny12@gmail.com";
     String TEST_USER_NICKNAME = "nickname";
+    String TEST_USER_INTRODUCE = "introduce";
     String TEST_WRONG_USER_NICKNAME = "12345";
     String TEST_USER_INFO = "info";
     String TEST_USER_NAME_MESSAGE = "아이디는 최소 4자 이상, 10자 이하로 알파벳 소문자와 숫자로 구성되어야 합니다.";
@@ -36,12 +39,21 @@ public interface UserCommonTest {
         .password(ANOTHER_PREFIX + TEST_USER_PASSWORD)
         .nickname(ANOTHER_PREFIX + TEST_USER_NICKNAME)
         .build();
-    SignupRequestDto TEST_USER_REQUEST_DTO = SignupRequestDto.builder()
+    SignupRequestDto TEST_USER_SIGNUP_REQUEST_DTO = SignupRequestDto.builder()
         .nickname(TEST_USER_NAME)
         .password(TEST_USER_PASSWORD)
         .email(TEST_USER_EMAIL)
         .build();
 
+    UserRequestDto TEST_USER_REQUEST_DTO = UserRequestDto.builder()
+        .nickname(TEST_USER_NAME)
+        .introduce(TEST_USER_INTRODUCE)
+        .build();
+
+
+    UserResponseDto TEST_USER_RESPONSE_DTO = UserResponseDto.builder()
+        .user(TEST_USER)
+        .build();
 
 
 
