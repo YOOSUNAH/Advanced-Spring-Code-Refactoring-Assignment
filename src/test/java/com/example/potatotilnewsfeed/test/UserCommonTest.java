@@ -5,6 +5,7 @@ import com.example.potatotilnewsfeed.domain.user.dto.UserRequestDto;
 import com.example.potatotilnewsfeed.domain.user.dto.UserResponseDto;
 import com.example.potatotilnewsfeed.domain.user.entity.User;
 import com.example.potatotilnewsfeed.domain.user.entity.UserRoleEnum;
+import com.example.potatotilnewsfeed.global.security.UserDetailsImpl;
 
 public interface UserCommonTest {
 
@@ -28,11 +29,14 @@ public interface UserCommonTest {
     String TOKEN = "test-token";
     String INVALID_TOKEN = "invalid-token";
 
+
     User TEST_USER = User.builder()
         .nickname(TEST_USER_NAME)
         .password(TEST_USER_PASSWORD)
         .nickname(TEST_USER_NICKNAME)
         .build();
+
+    UserDetailsImpl TEST_USER_DETAILS = new UserDetailsImpl(TEST_USER);
 
     User TEST_DUPLCATE_USER = User.builder()
         .nickname(ANOTHER_PREFIX + TEST_USER_NAME)

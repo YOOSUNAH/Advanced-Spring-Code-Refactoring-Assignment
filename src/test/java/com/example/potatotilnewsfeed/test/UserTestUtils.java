@@ -8,17 +8,14 @@ import org.springframework.util.SerializationUtils;
 public class UserTestUtils {
 
     public static User get(User user) {
-        return get(user, 1L, LocalDateTime.now(), LocalDateTime.now());
+        return get(user, 1L);
     }
 
-    public static User get(User user, Long id, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public static User get(User user, Long userId) {
         User newUser = SerializationUtils.clone(user);
 
-        ReflectionTestUtils.setField(newUser, User.class, "id", id, Long.class);
-        ReflectionTestUtils.setField(newUser, User.class, "createdAt", createdAt,
-            LocalDateTime.class);
-        ReflectionTestUtils.setField(newUser, User.class, "modifiedAt", modifiedAt,
-            LocalDateTime.class);
+        ReflectionTestUtils.setField(newUser, User.class, "userId", userId, Long.class);
+
 
         return newUser;
     }
