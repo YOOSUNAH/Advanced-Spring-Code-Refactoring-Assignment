@@ -10,6 +10,9 @@
 + QueryDSL 을 사용하여 검색 기능 만들기
 + Pageable 을 사용하여 페이징 및 정렬 기능 만들기
 ---  
++ release 브랜치 : 서버 배포 안한 버전
++ dev 브랜치 : 서버 배포 한 버전
+---
 
 # Development
 ## Prerequisites
