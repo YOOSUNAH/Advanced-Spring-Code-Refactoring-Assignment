@@ -12,11 +12,9 @@ import java.io.Serializable;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Getter
-@Setter
 @Table(name = "TB_USER")
 @NoArgsConstructor
 public class User implements Serializable {
