@@ -29,7 +29,7 @@ public class CommentController { // 어떤 형태로 값을 주고 받을 것인
   @PostMapping("/tils/{tilId}/comments")
   public ResponseEntity<CommentResponseDto> createComment(@PathVariable Long tilId,
       @RequestBody CommentRequestDto requestDto,
-      @AuthenticationPrincipal UserDetailsImpl userDetails) {
+      @AuthenticationPrincipal UserDetailsImpl userDetails) throws BadRequestException {
     // 댓글 작성, 응답코드 : 200
     CommentResponseDto createDto = commentService.createComment(tilId, requestDto,
         userDetails.getUser());
