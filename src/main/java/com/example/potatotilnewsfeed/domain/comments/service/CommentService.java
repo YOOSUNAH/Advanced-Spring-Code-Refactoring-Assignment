@@ -7,8 +7,10 @@ import com.example.potatotilnewsfeed.domain.comments.repository.CommentRepositor
 import com.example.potatotilnewsfeed.domain.til.entity.Til;
 import com.example.potatotilnewsfeed.domain.til.repository.TilRepository;
 import com.example.potatotilnewsfeed.domain.user.entity.User;
+import com.example.potatotilnewsfeed.global.exception.NotFoundException;
 import java.util.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,12 +26,12 @@ public class CommentService {
   // 댓글 작성
   public CommentResponseDto createComment(Long tilId, CommentRequestDto requestDto, User user) {
     Til til = tilRepository.findById(tilId).orElseThrow(
-        () -> new NoSuchElementException("해당 TIL을 찾을 수 없습니다.")
+        () -> new NotFoundException("해당 TIL을 찾을 수 없습니다.")
     );
 
     Comment register = new Comment(til, user, requestDto.getContent());
     if (requestDto.getContent().length() > 64) {
-      new IllegalArgumentException("64글자를 초과했습니다.");
+      new BadRequestException("64글자를 초과했습니다.");
     }
 
     commentRepository.save(register);
@@ -40,9 +42,9 @@ public class CommentService {
 
   // 댓글 수정
   public CommentResponseDto updateComment(Long tilId, Long commentId,
-      CommentRequestDto requestDto, User user) {
+      CommentRequestDto requestDto, User user) throws BadRequestException {
     Comment comment = commentRepository.findById(commentId).orElseThrow(
-        () -> new NoSuchElementException("해당 commentId를 찾을 수 없습니다.")
+        () -> new NotFoundException("해당 commentId를 찾을 수 없습니다.")
     );
 
     if (!comment.getTil().getId().equals(tilId)) {
@@ -50,7 +52,7 @@ public class CommentService {
     }
 
     if (requestDto.getContent().length() > 64) {
-      throw new IllegalArgumentException("64글자를 초과했습니다.");
+      throw new BadRequestException("64글자를 초과했습니다.");
     }
 
     comment.setContent(requestDto.getContent());
